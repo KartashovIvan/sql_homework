@@ -19,18 +19,21 @@ patronymic varchar(100),
 type_training varchar(100),
 course_id int references univers.course(id));
 
-insert into univers.faculty values (1,'Инженерный',30000);
-insert into univers.faculty values (2,'Экономический',49000);
+insert into univers.faculty 
+values (1,'Инженерный',30000),
+(2,'Экономический',49000);
 
-insert into univers.course values (1,1,1);
-insert into univers.course values (2,1,2);
-insert into univers.course values (3,4,2);
+insert into univers.course 
+values (1,1,1),
+(2,1,2),
+(3,4,2);
 
-insert into univers.students values (1,'Петр','Петров','Петрович','бюджетник',1);
-insert into univers.students values (2,'Иван','Иванов','Иваныч','частник',1);
-insert into univers.students values (3,'Сергей','Михно','Иваныч','бюджетник',3);
-insert into univers.students values (4,'Ирина','Стоцкая','Юрьевна','частник',3);
-insert into univers.students values (5,'Настасья','Младич',null,'частник',2);
+insert into univers.students 
+values (1,'Петр','Петров','Петрович','бюджетник',1),
+(2,'Иван','Иванов','Иваныч','частник',1),
+(3,'Сергей','Михно','Иваныч','бюджетник',3),
+(4,'Ирина','Стоцкая','Юрьевна','частник',3),
+(5,'Настасья','Младич',null,'частник',2);
 
 --Вывести всех студентов, кто платит больше 30_000.
 select s.name_student ,s.surname ,s.patronymic ,f.ducation_cost 
@@ -43,7 +46,7 @@ where f.ducation_cost > (30000);
 update univers.students set course_id = 2 where surname = 'Петров';
 
 --Вывести всех студентов без отчества или фамилии.
-select * from univers.students s where surname isnull or patronymic isnull;
+select * from univers.students s where surname IS NULL or patronymic IS null;
 
 --Вывести всех студентов содержащих в фамилии или в имени или в отчестве "ван"
 select
